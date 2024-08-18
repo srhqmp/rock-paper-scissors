@@ -56,6 +56,22 @@ function logMessage(humanSelection, computerSelection, score) {
   console.log(message);
 }
 
+function logMatchOutcome() {
+  let message;
+
+  if (humanScore === computerScore) {
+    message = "It's a tie!";
+  } else if (humanScore > computerScore) {
+    message = "You win!";
+  } else {
+    message = "You lose!";
+  }
+
+  console.log(
+    `${message} Final Score: Player: ${humanScore} - Computer: ${computerScore}`
+  );
+}
+
 // play a single round
 function playRound(humanSelection, computerSelection) {
   //   determine winner
@@ -67,6 +83,15 @@ function playRound(humanSelection, computerSelection) {
   computerScore = score.computer ? (computerScore += 1) : computerScore;
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-playRound(humanSelection, computerSelection);
+// play entire game = 5 rounds
+function playGame() {
+  // call playRound five times
+  for (let i = 0; i < 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  }
+  logMatchOutcome();
+}
+
+playGame();
