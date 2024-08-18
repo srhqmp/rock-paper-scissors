@@ -8,4 +8,19 @@ function getComputerChoice() {
   return choices[randomNum];
 }
 
-// console.log(getComputerChoice());
+// takes user choice and returns it
+function getHumanChoice() {
+  const input = prompt(`Enter your choice. (${choices.join(", ")}):`);
+
+  const choice =
+    input &&
+    choices.find(
+      (choice) =>
+        choice.toLocaleLowerCase() === input.trim().toLocaleLowerCase()
+    );
+
+  if (!choice) getHumanChoice();
+  return choice;
+}
+
+console.log(getHumanChoice());
