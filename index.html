@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
-    <link rel="icon" href="images/logo.svg" type="image/x-icon">
-    <script type="module" src="script.js"></script>
-</head>
-<body>
-    <h1>Rock Paper Scissors</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors | Play with computer</title>
+    <link rel="icon" href="images/logo.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" defer src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <h2>ROUND <span id="round-number">1</span></h2>
+    </header>
+    <div class="score">
+      <div class="player-score"></div>
+      <div class="computer-score"></div>
+    </div>
+    <div class="choices">
+      <div class="player-choice">
+        <div class="player-choices"></div>
+        <div class="player-status"></div>
+      </div>
+      <div class="computer-choice">
+        <div class="computer-choices"></div>
+        <div class="computer-status"></div>
+      </div>
+    </div>
+    <div class="message"></div>
+    <div id="match-outcome">
+      <div class="match-outcome-message"></div>
+      <div class="match-outcome-score"></div>
+      <div class="play-button"></div>
+    </div>
+    <footer></footer>
+  </body>
 </html>

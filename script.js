@@ -84,14 +84,14 @@ function playRound(humanSelection, computerSelection) {
 }
 
 // play entire game = 5 rounds
-function playGame() {
-  // call playRound five times
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-  }
-  logMatchOutcome();
-}
+// function playGame() {
+//   // call playRound five times
+//   for (let i = 0; i < 5; i++) {
+//     const humanSelection = getHumanChoice();
+//     const computerSelection = getComputerChoice();
+//     playRound(humanSelection, computerSelection);
+//   }
+//   logMatchOutcome();
+// }
 
-playGame();
+// playGame();
