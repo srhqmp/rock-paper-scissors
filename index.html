@@ -12,26 +12,93 @@
     <header>
       <h2>ROUND <span id="round-number">1</span></h2>
     </header>
-    <div class="score">
-      <div class="player-score"></div>
-      <div class="computer-score"></div>
-    </div>
-    <div class="choices">
-      <div class="player-choice">
-        <div class="player-choices"></div>
-        <div class="player-status"></div>
+    <div class="player-section container">
+      <div id="human-section">
+        <div class="score-card">
+          <h3>Your Score</h3>
+          <div class="score">0</div>
+        </div>
+        <div class="selection-card">
+          <div class="pick-rock">
+            <img
+              src="images/pick-rock.png"
+              width="200"
+              height="100%"
+              alt="Rock"
+            />
+          </div>
+          <div class="pick-paper">
+            <img
+              src="images/pick-paper.png"
+              width="200"
+              height="100%"
+              alt="Paper"
+            />
+          </div>
+          <div class="pick-scissors">
+            <img
+              src="images/pick-scissors.png"
+              width="200"
+              height="100%"
+              alt="Scissors"
+            />
+          </div>
+        </div>
+        <div class="status-card">Take your pick</div>
       </div>
-      <div class="computer-choice">
-        <div class="computer-choices"></div>
-        <div class="computer-status"></div>
+      <div id="computer-section">
+        <div class="score-card">
+          <h3>Computer Score</h3>
+          <div class="score">0</div>
+        </div>
+        <div class="selection-card">
+          <div class="pick-rock">
+            <img
+              src="images/pick-rock.png"
+              width="200"
+              height="100%"
+              alt="Rock"
+            />
+          </div>
+          <div class="pick-paper">
+            <img
+              src="images/pick-paper.png"
+              width="200"
+              height="100%"
+              alt="Paper"
+            />
+          </div>
+          <div class="pick-scissors">
+            <img
+              src="images/pick-scissors.png"
+              width="200"
+              height="100%"
+              alt="Scissors"
+            />
+          </div>
+        </div>
+        <div class="status-card">Computer made a pick</div>
       </div>
     </div>
-    <div class="message"></div>
+
+    <div class="message">You win!</div>
+
     <div id="match-outcome">
-      <div class="match-outcome-message"></div>
-      <div class="match-outcome-score"></div>
-      <div class="play-button"></div>
+      <h2>You win!</h2>
+      <div class="outcome-score">
+        <span id="human-score">5</span>:<span id="computer-score">0</span>
+      </div>
+      <button id="play-again-button">Play again</button>
     </div>
-    <footer></footer>
+    <footer>
+      Copyright &copy;
+      <a
+        href="https://github.com/srhqmp"
+        target="_blank"
+        rel="noreferrer noopener"
+        >srhqmp</a
+      >
+      2024
+    </footer>
   </body>
 </html>
