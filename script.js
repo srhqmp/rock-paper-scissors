@@ -2,18 +2,28 @@ const choices = ["Rock", "Paper", "Scissors"];
 let humanScore = 0;
 let computerScore = 0;
 let currentRound = 1;
-let isGameStarted = false;
 
-// player section
+let isUserTurn = true;
+
 const humanSection = document.getElementById("human-section");
 const computerSection = document.getElementById("computer-section");
-// selection card
+
 const humanSelectionCard = humanSection.querySelector(".selection-card");
 const computerSelectionCard = computerSection.querySelector(".selection-card");
-// computer
+
 const loadingIndicator = document.querySelector(".status-indicator");
-// human
+
 const humanSelection = humanSelectionCard.querySelectorAll("div");
+const messageContainer = document.querySelector(".message");
+
+const humanScoreContainer = humanSection.querySelector(".score");
+const computerScoreContainer = computerSection.querySelector(".score");
+
+const roundCountContainer = document.getElementById("round-number");
+
+const matchOutcomeContainer = document.getElementById("match-outcome");
+const matchOutcomeMessage = matchOutcomeContainer.querySelector("h2");
+const playAgainButton = document.getElementById("play-again-button");
 
 // randomly returns rock paper or scissors
 function getComputerChoice() {
@@ -59,11 +69,11 @@ function logMessage(humanSelection, computerSelection, score) {
     message = `You win! ${humanSelection} beats ${computerSelection}.`;
   }
 
-  const messageContainer = document.querySelector(".message");
   messageContainer.textContent = message;
 }
 
 function logMatchOutcome() {
+  matchOutcomeContainer.style.display = "flex";
   let message;
 
   if (humanScore === computerScore) {
@@ -74,9 +84,10 @@ function logMatchOutcome() {
     message = "You lose!";
   }
 
-  console.log(
-    `${message} Final Score: Player: ${humanScore} - Computer: ${computerScore}`
-  );
+  matchOutcomeMessage.textContent = message;
+  matchOutcomeContainer.querySelector("#human-score").textContent = humanScore;
+  matchOutcomeContainer.querySelector("#computer-score").textContent =
+    computerScore;
 }
 
 function simulateComputerPicking() {
@@ -97,8 +108,26 @@ function showComputerPick(computerSelection) {
   ).style.display = "block";
 }
 
+function resetPicks() {
+  roundCountContainer.textContent = currentRound;
+  humanSelectionCard
+    .querySelectorAll("div")
+    .forEach((div) => (div.style.display = "block"));
+  computerSelectionCard
+    .querySelectorAll("div")
+    .forEach((div) => (div.style.display = "none"));
+  // set loading status
+  loadingIndicator.style.display = "flex";
+  // clear messages
+  computerSection.querySelector(".status-card").textContent =
+    "Computer made a pick";
+  humanSection.querySelector(".status-card").textContent = "Take your pick";
+  messageContainer.textContent = "";
+  isUserTurn = true;
+}
+
 function playRound(humanSelection, computerSelection) {
-  isGameStarted = true;
+  isUserTurn = false;
   document.getElementById("round-number").textContent = currentRound;
   //   determine winner
   showComputerPick(computerSelection);
@@ -109,28 +138,41 @@ function playRound(humanSelection, computerSelection) {
   humanScore = score.human ? (humanScore += 1) : humanScore;
   computerScore = score.computer ? (computerScore += 1) : computerScore;
 
+  humanScoreContainer.textContent = humanScore;
+  computerScoreContainer.textContent = computerScore;
+
+  if (humanScore === 5 || computerScore === 5) {
+    logMatchOutcome();
+  }
+
   currentRound += 1;
+
+  setTimeout(() => {
+    resetPicks();
+  }, 3000);
 }
 
 humanSelectionCard.querySelectorAll("div").forEach((div) => {
   return div.addEventListener("click", (event) => {
     const target = event.target;
 
-    const humanSelection = target.alt;
-    const computerSelection = simulateComputerPicking();
+    if (isUserTurn) {
+      const humanSelection = target.alt;
+      const computerSelection = simulateComputerPicking();
 
-    humanSection.querySelector(".status-card").textContent = "You made a pick";
-    humanSelectionCard.querySelectorAll("div").forEach((div) => {
-      console.log(div.classList);
-      if (!div.classList.contains(`pick-${target.alt.toLowerCase()}`)) {
-        div.style.display = "none";
-      }
-    });
+      humanSection.querySelector(".status-card").textContent =
+        "You made a pick";
+      humanSelectionCard.querySelectorAll("div").forEach((div) => {
+        if (!div.classList.contains(`pick-${target.alt.toLowerCase()}`)) {
+          div.style.display = "none";
+        }
+      });
 
-    playRound(humanSelection, computerSelection);
+      playRound(humanSelection, computerSelection);
+    }
   });
 });
 
-// while (isGameStarted && humanScore !== 5 || humanScore !== 5) {
-
-// }
+playAgainButton.addEventListener("click", (event) => {
+  window.location.reload();
+});
