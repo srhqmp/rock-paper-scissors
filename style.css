@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 * {
-  /* outline: 1px solid red; */
+  outline: 1px solid red;
 }
 
 :root {
@@ -71,15 +71,30 @@ h3 {
   gap: 12px;
   justify-content: center;
   padding: 48px 0;
+  align-items: center;
+}
+
+.status-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 310px;
+  width: 100%;
+  margin: auto;
 }
 
 .selection-card > div {
   overflow: hidden;
-  border-radius: 12px;
+  padding: 0;
+  margin: 0;
 }
 
 #human-section .selection-card > div {
   cursor: pointer;
+}
+
+#computer-section .selection-card > div {
+  display: none;
 }
 
 .status-card {
@@ -141,6 +156,42 @@ footer {
 footer a {
   color: var(--secondary-color);
   text-decoration: none;
+}
+
+.loaded {
+  display: none;
+}
+
+/* Loader from w3schools 
+  https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader */
+
+.loader {
+  border: 16px solid var(--transparent-color);
+  border-radius: 50% !important;
+  border-top: 16px solid var(--secondary-color);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 1300px) {
